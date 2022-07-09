@@ -66,5 +66,3 @@ def about():
     return render_template("about.html")
 if __name__ == '__main__':
     app.run(host=None,port=None,debug=True)
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
