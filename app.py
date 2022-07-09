@@ -1,5 +1,6 @@
-from flask import * 
-import sqlite3,requests
+import requests
+from flask import *
+import sqlite3
 from flask import render_template
 app = Flask(__name__)  # creating the Flask class object
 
@@ -54,6 +55,15 @@ def delete(sno):
     cur.close()
     db_connection.close() 
     return redirect('/')
+@app.route('/mytodos')  
+def mytodo():
+    db_connection = establish_connection()
+    all_todos = db_connection.execute('SELECT * FROM todo').fetchall()
+    db_connection.close()
+    return render_template("mytodo.html",alltodos=all_todos);
+@app.route('/about',methods=['GET','POST','PUT','DELETE']) 
+def about():
+    return render_template("about.html")
 if __name__ == '__main__':
     app.run(host=None,port=None,debug=True)
 
